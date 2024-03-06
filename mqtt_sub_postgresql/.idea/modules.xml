@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/mqtt_sub_postgresql.iml" filepath="$PROJECT_DIR$/.idea/mqtt_sub_postgresql.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/mqtt_sub_db.iml" filepath="$PROJECT_DIR$/.idea/mqtt_sub_db.iml" />
     </modules>
   </component>
 </project>
