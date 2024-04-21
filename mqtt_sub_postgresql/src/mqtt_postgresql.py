@@ -1,9 +1,12 @@
 import paho.mqtt.client as mqtt
 import psycopg2
 from psycopg2 import Error
+import time
+
+current_time = time.strftime('%Y-%m-%d %H:%M:%S')
 
 # MQTT configuration
-MQTT_BROKER_HOST = "localhost"
+MQTT_BROKER_HOST = "192.168.206.95"
 MQTT_BROKER_PORT = 1883
 MQTT_USERNAME = "bllraslen"
 MQTT_PASSWORD = "bllraslen"
@@ -36,7 +39,9 @@ def on_message(client, userdata, msg):
             password=DB_PASSWORD
         )
         cursor = connection.cursor()
-        cursor.execute("INSERT INTO mqtt_data (topic, payload) VALUES (%s, %s)", (msg.topic, msg.payload.decode('utf-8')))
+        cursor.execute("INSERT INTO mqtt_data (topic, payload, detection_time) VALUES (%s, %s, %s)",
+                       (msg.topic, msg.payload.decode('utf-8'), current_time))
+
         connection.commit()
         print("Data stored successfully in PostgreSQL database")
     except Error as e:
